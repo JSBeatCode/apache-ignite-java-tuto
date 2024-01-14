@@ -1,0 +1,87 @@
+1. https://ignite.apache.org/download.cgi 에 들어가서 ignite 2.9.1 bin 버전 다운로드
+2. 압축풀기
+3. IGNITE_HOME 과 bin 환경설정
+4. > cmd 창 > ignite
+
+5. java maven proejct 생성 java 1.8 기준
+6. pom.xml 코딩
+	<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	  <modelVersion>4.0.0</modelVersion>
+	  <groupId>com.example</groupId>
+	  <artifactId>test</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+	  <name>test</name>
+	  <description>com.example</description>
+	  
+	  <properties>
+		    <ignite.version>2.9.1</ignite.version>
+		</properties>
+		
+		<dependencies>
+		    <dependency>
+		        <groupId>org.apache.ignite</groupId>
+		        <artifactId>ignite-core</artifactId>
+		        <version>${ignite.version}</version>
+		    </dependency>
+		    <dependency>
+		        <groupId>org.apache.ignite</groupId>
+		        <artifactId>ignite-spring</artifactId>
+		        <version>${ignite.version}</version>
+		    </dependency>
+		</dependencies>
+		
+		<build>
+		    <plugins>
+		        <plugin>
+		            <groupId>org.apache.maven.plugins</groupId>
+		            <artifactId>maven-compiler-plugin</artifactId>
+		            <configuration>
+		                <source>1.8</source>
+		                <target>1.8</target>
+		            </configuration>
+		        </plugin>
+		    </plugins>
+		</build>
+	</project>
+
+7. IgniteExample.java 코딩:
+	package test;
+
+	import org.apache.ignite.Ignite;
+	import org.apache.ignite.IgniteCache;
+	import org.apache.ignite.Ignition;
+	
+	public class IgniteExample {
+	
+	    public static void main(String[] args) {
+	        // Start Ignite node
+	        try (Ignite ignite = Ignition.start()) {
+	            System.out.println("Apache Ignite is up and running!");
+	
+	            // Create cache
+	            IgniteCache<Integer, String> cache = ignite.getOrCreateCache("exampleCache");
+	
+	            // Create
+	            cache.put(1, "Hello, Ignite!");
+	
+	            // Read
+	            String value = cache.get(1);
+	            System.out.println("Retrieved from cache: " + value);
+	
+	            // Update
+	            cache.put(1, "Updated value");
+	
+	            // Read updated value
+	            value = cache.get(1);
+	            System.out.println("Updated value: " + value);
+	
+	            // Delete
+	            cache.remove(1);
+	
+	            // Read after deletion (should be null)
+	            value = cache.get(1);
+	            System.out.println("Value after deletion: " + value);
+	        }
+	    }
+	}
+		

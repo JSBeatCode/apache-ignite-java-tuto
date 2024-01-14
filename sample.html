@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  /* 스타일을 정의합니다. */
+  body {
+    height: 2000px; /* 스크롤 가능한 페이지를 만들기 위한 높이 설정 */
+    margin: 0;
+    padding: 0;
+  }
+
+  #movingElement {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    transition: top 0.5s ease, left 0.5s ease; /* top 속성을 부드럽게 애니메이션화합니다. */
+  }
+</style>
+</head>
+<body>
+<div id="movingElement">이동하는 요소</div>
+
+<script>
+  // JavaScript로 스크롤 이벤트를 처리합니다.
+  window.addEventListener("scroll", function() {
+    var scrollPosition = window.scrollY; // 스크롤 위치를 가져옵니다.
+    var element = document.getElementById("movingElement");
+
+    // 스크롤 위치에 따라 요소의 위치를 조정합니다.
+    element.style.left = scrollPosition + "px";
+    element.style.top = scrollPosition + "px";
+  });
+</script>
+</body>
+</html>

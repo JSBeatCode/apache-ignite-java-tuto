@@ -1,0 +1,212 @@
+[
+    {
+        "id": "id001",
+        "title": "java",
+        "subject": "subject",
+        "contents:": "123"
+    },
+    {
+        "title": "test",
+        "subject": "test",
+        "contents:": "1234",
+        "id": "Xa2XaAL"
+    },
+    {
+        "title": "test",
+        "subject": "test",
+        "contents": "12",
+        "id": "-2GcEfF"
+    },
+    {
+        "title": "java",
+        "subject": "array를 셋 파트로 나눠서 각 파트별로 로직 실행 하는 방법",
+        "contents": "public static void main(String[] args) throws Exception {\n\n  List<Integer> array = new ArrayList<Integer>();\n  array = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);\n  double size = array.size();\n  double div = 2.0;\n\n  int handleCnt = (int) Math.ceil(size / div);\n\n  System.out.println(handleCnt);\n  // System.out.println(array.size() / div);\n  // System.out.println(array.size() % div);\n\n  int start = 0;\n  System.out.println(\"================================================================\");\n  for (int i = 1; i <= div; i++) {\n   int max = handleCnt * i;\n   for (int j = start; j < max; j++) {\n    if (j < array.size()) {\n     int test = array.get(j);\n     System.out.print(test + \", \\t\");\n    }    \n   }\n   System.out.println();\n   start = max;\n  }\n}",
+        "id": "iZ3TY5M"
+    },
+    {
+        "title": "mssql",
+        "subject": "yyyymmddhhmiss 형식의 날짜",
+        "contents": "SELECT FORMAT(GETDATE(),'yyyyMMddHHmmss');\nSELECT CONVERT(VARCHAR(14), FORMAT(GETDATE(),'yyyyMMddHHmmss'));",
+        "id": "UCqCCzi"
+    },
+    {
+        "title": "javascript",
+        "subject": "javascript for문 새로운 문법",
+        "contents": "for (let row of rows) {\n         \n        }",
+        "id": "_yOEwta"
+    },
+    {
+        "title": "mybatis",
+        "subject": "declare 변수 포함해서 procedure 수행하기",
+        "contents": " <select id=\"someLogic\" parameterType=\"map\" resultType=\"map\">\n  DECLARE @convertedParam NVARCHAR(300)\n\n  SET @convertedParam = FN_PARAM(#{bankAcctNo})\n\n  EXEC SOME_PROCEDURE\n  #{param}\n  , @convertedParam\n </select>",
+        "id": "E4Udy-P"
+    },
+    {
+        "title": "javascript",
+        "subject": "javascript 복사 붙혀넣기 복붙 copy paste 이벤트 event",
+        "contents": "document.addEventListener('paste', function(e) {\n e.preventDefault();\n try {\n  const parsedTxt = (e.clipboardData || window.clipboardData).getData('text');\n  \n  if (!isNull(parsedTxt)) {\n   \n   // 복붙한 데이터를 파싱한다.\n   const txtList = parsedTxt.split('\\r\\n');\n   let result = [];\n   for (let i = 0; i < txtList.length; i++) {\n    const data = txtList[i].split('\\t')\n    for (let j = 0; j < data.length; j++) {\n     result.push(data[j]);\n    }\n   }\n   console.log(result)\n\n  }\n } catch (e) { \n  alert(e); \n  console.error(e); \n }\n});",
+        "id": "OokMP0M"
+    },
+    {
+        "title": "mssql",
+        "subject": "table의 pk 값 찾기",
+        "contents": "SELECT * \nFROM \nINFORMATION_SCHEMA.KEY_COLUMN_USAGE \nWHERE TABLE_NAME = '테이블명';",
+        "id": "XpoO6wC"
+    },
+    {
+        "title": "mssql",
+        "subject": "소수점 퍼센트화",
+        "contents": "SELECT FORMAT(0.75, 'P') AS PERCENTAGE; --75%",
+        "id": "cox78ui"
+    },
+    {
+        "title": "spring",
+        "subject": "jpa saveall 여러건 insert update",
+        "contents": "public void saveAll(List<DTO1> dataList) {\n  List<DTO1Jpo> jpoList = new ArrayList<DTO1Jpo>();\n\n  for (DTO1 data : dataList) {\n   DTO1Jpo jpoToSave = new DTO1Jpo(data);\n   jpoList.add(jpoToSave);\n  }\n\n  this.repository.saveAll(jpoList);\n }",
+        "id": "pydl6rR"
+    },
+    {
+        "title": "javascript",
+        "subject": "파일명에 특수문자 있는지 확인하는 패턴 정규식",
+        "contents": "const pattern = /[\\{\\}\\/?,;:|*~`!^\\+<>@\\#$%&\\\\\\=\\'\\\"]/gi;\n    if (pattern.test(String(list[i].fileItem.fileName))) {\n     alert(\"파일명에 특수문자가 있습니다.\");\n     return;\n    }",
+        "id": "GOB1M4R"
+    },
+    {
+        "title": "java",
+        "subject": "url querystring decode",
+        "contents": "import java.net.URLDecoder;\nString decodeStr1 = URLDecoder.decode(test1, StandardCharsets.UTF_8);",
+        "id": "wscS6vU"
+    },
+    {
+        "title": "spring",
+        "subject": "bean의 명칭을 string으로 받아서 해당 클래스의 메서드 실행",
+        "contents": " \nimport org.springframework.beans.BeansException;\nimport org.springframework.context.ApplicationContext;\nimport org.springframework.context.ApplicationContextAware;\nimport org.springframework.stereotype.Component;\n\n public static Object getBean(String beanNm) {\n  //\n  ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();\n  return applicationContext.getBean(beanNm);\n }\n\n\n public static String invoke(String beanNm, Map map, String funcNm) throws Exception {\n  //\n  Object toBean = BeanUtils.getBean(beanNm);\n  Class<? extends Object> fClass = toBean.getClass();\n  Method method = fClass.getMethod(funcNm, Map.class);\n  return (String) method.invoke(toBean, map);\n }\n\n\n@Component\npublic class ApplicationContextProvider implements ApplicationContextAware {\n\t//\n\tprivate static ApplicationContext applicationContext;\n\n\t@Override\n\tpublic void setApplicationContext(ApplicationContext ctx) throws BeansException {\n\t\t//\n\t\tapplicationContext = ctx;\n\t}\n\n\tpublic static ApplicationContext getApplicationContext() {\n\t\t//\n\t\treturn applicationContext;\n\t}\n\n}",
+        "id": "W2nMfmR"
+    },
+    {
+        "title": "procedure",
+        "subject": "프로시져 return 값을 하는 방법",
+        "contents": " BEGIN\n   SELECT 'success'\n   RETURN\n END",
+        "id": "OO3_yKo"
+    },
+    {
+        "title": "mssql",
+        "subject": "table 복사 sql 문 select into",
+        "contents": "SELECT * INTO TEST_TABLE_231123 FROM TEST_TABLE;",
+        "id": "Cv91mWC"
+    },
+    {
+        "title": "mssql",
+        "subject": "SEQUENCE 변경",
+        "contents": "ALTER SEQUENCE DBO.TEST_TABLE_S RESTART WITH 47906;\n",
+        "id": "qySXqh_"
+    },
+    {
+        "title": "mssql",
+        "subject": "SEQUENCE 조회",
+        "contents": "SELECT * FROM INFORMATION_SCHEMA.SEQUENCES \nWHERE SEQUENCE_NAME LIKE 'SEQ명%';",
+        "id": "47t8kld"
+    },
+    {
+        "title": "mssql",
+        "subject": "이번달 초 말 첫일 말일 가져오기",
+        "contents": "SELECT CONVERT(CHAR(10), EOMONTH(GETDATE()), 112); --말 일\nSELECT FORMAT(DATEADD(MM, DATEDIFF(MM, 0, GETDATE()), 0), 'yyyyMMdd') ; --첫 일",
+        "id": "hmlaedw"
+    },
+    {
+        "title": "sql",
+        "subject": "원래는 하나의 row 데이터인데, 특정 컬럼의 코드에 따라 select시 3줄씩 나오는 데이터를 한줄로 병합해서 보여주는 방법, WITH절",
+        "contents": "WITH LIST AS ( \nSELECT \n\tCOL1,\n\tCOL2\n   FROM TABLEA A\n   JOIN TABLEB B M ON A.COL1 = B.COL1 \n  WHERE 1=1\n    AND A.COL1 = 'A'\n    AND A.COL2 = 'B'\nORDER BY A.COL1, B.COL2\n ) \n  SELECT \n\t  COL1,\n\t  COL2\n  GROUP BY  \n\t  COL1,\n\t  COL2\n  ORDER BY \n\t  COL1,\n\t  COL2\n\n ;\n",
+        "id": "9cK0kW3"
+    },
+    {
+        "title": "sql",
+        "subject": "특정 컬럼의 코드에 따라 나오는 데이터를 한줄로 병합해서 보여주는 방법, ROW_NUMBER, CASE WHEN",
+        "contents": "SELECT \n G2.RNUM,\n MAX(G2.NAME1) AS NAME1,\n MAX(G2.NAME2) AS NAME2\nFROM (\n SELECT \n  G1.RNUM,\n  CASE WHEN G1.TYP = 'A' THEN 'A' ELSE NULL END AS NAME1,\n  CASE WHEN G1.TYP = 'B' THEN 'B' ELSE NULL END AS NAME2\n FROM \n (\n  SELECT \n   ROW_NUMBER() OVER (ORDER BY ID) AS RNUM,\n   'A' AS TYP,\n   ID\n  FROM TEST_TABLE WITH (NOLOCK)\n  WHERE COL1 IN ('AA')\n UNION ALL \n  SELECT \n   ROW_NUMBER() OVER (ORDER BY ID) AS RNUM,\n   'B' AS TYP,\n   ID\n  FROM TEST_TABLE WITH (NOLOCK)\n  WHERE COL1 IN ('BB')\n ) G1\n) G2\nGROUP BY G2.RNUM\n;",
+        "id": "zV6Tzu2"
+    },
+    {
+        "title": "java",
+        "subject": "list의 2개 컬럼을 groupby하고 출력",
+        "contents": " Map<Object, List<Map<String, Object>>> result \n\t= resultJsonList.stream().collect(Collectors.groupingBy(map -> \n   Arrays.asList(map.get(\"col1\"), map.get(\"col2\"), map.get(\"col3\"))\n  ));\n  Iterator it = result.keySet().iterator();",
+        "id": "BSD9Jht"
+    },
+    {
+        "title": "java",
+        "subject": "2자리 표시 0으로 채우기",
+        "contents": "System.out.println(String.format(\"%02d\", 11));\n\n% : 명령 시작을 의미0 : 채워질 문자2 : 총 자리수d : 십진수로 된 정수",
+        "id": "PabXBCo"
+    },
+    {
+        "title": "java",
+        "subject": "정해진 시간을 주고 정해진 시간동안 마우스 움직이기",
+        "contents": "public static void main(String[] args) throws AWTException {\n  Robot rb = new Robot();\n  \n  Date date1 = new Date();\n  Date date2 = new Date(date1.getTime());\n\n  Calendar cal = Calendar.getInstance();\n  cal.setTime(date2);\n  cal.add(Calendar.MINUTE, 60);\n  date2 = cal.getTime();\n  \n  boolean exit = false;\n  boolean rev = false;\n  while (!exit) {\n   date1 = new Date();\n   if (date1.compareTo(date2) >= 0) {\n    exit = true;\n    break;\n   }\n   rb.setAutoDelay(1000 * 30);\n   if (rev) {\n    rev = false;\n    rb.mouseMove(500, 500);\n   } else {\n    rev = true;\n    rb.mouseMove(400, 400);\n   }\n  }\n\n  System.exit(0);\n }",
+        "id": "7FhuMb6"
+    },
+    {
+        "title": "javascript",
+        "subject": "숫자 이외의 것은 지우기",
+        "contents": "const data = String($(\"#data\").val()).replace(/[^0-9]/g, '');",
+        "id": "YF4iiyN"
+    },
+    {
+        "title": "reactjs",
+        "subject": "react trends",
+        "contents": "https://www.freecodecamp.org/news/react-18-new-features/",
+        "id": "zob_Cs4"
+    },
+    {
+        "title": "vuejs",
+        "subject": "vuejs trends",
+        "contents": "https://www.makeuseof.com/vue-33-whats-new/",
+        "id": "UVm10Gs"
+    },
+    {
+        "title": "vscode",
+        "subject": "vscode stop update projects",
+        "contents": "1. 파일 > 설정 > import 검색 > manual로 변경",
+        "id": "Lf8qrrl"
+    },
+    {
+        "title": "spring",
+        "subject": "cmd command line으로 spring boot 실행",
+        "contents": "Boot가 있는 프로젝트 마우스 오른쪽 클릭 > Run As > Maven Build > Goals에 'package'적고 실행 > 프로젝트명.jar 파일생성 > cmd 창 > java -jar 프로젝트명.jar\n",
+        "id": "Eht5eLW"
+    },
+    {
+        "title": "java",
+        "subject": "소수점 .0 없애기",
+        "contents": "// object로 받은 값 중 숫자인 경우, double 소수점로 파싱되는 것을 다시 소수점 없앰\n private int convertObjToInt(Object obj) {\n  return Integer.parseInt(String.valueOf(Math.round(Double.parseDouble(String.valueOf(obj)))));\n }\n\n\n // param에 double 이나 소수점 값이 없기 때문에 이를 정리한다.\n private JsonObject doubleToIntInJsonObject(JsonObject jo) {\n  // Gson gson = new Gson();\n  JsonObject joCopy = new JsonObject();\n\n  Iterator it = jo.keySet().iterator();\n\n  while(it.hasNext()) {\n   String key = String.valueOf(it.next());\n   String str = String.valueOf(jo.get(key));\n   if (str.matches(\".*\\\\..*[0]\")) {\n    int newVal = convertObjToInt(jo.get(key));\n    joCopy.addProperty(key, newVal);\n   } else {\n    joCopy.addProperty(key, String.valueOf(jo.get(key)));\n   }\n  }\n  return joCopy;\n }",
+        "id": "_TrPjJo"
+    },
+    {
+        "title": "java",
+        "subject": "java stream list<map> 정렬 sort",
+        "contents": "resultList = resultList.stream().sorted(Comparator.comparing(m -> String.valueOf(m.get(\"data\")))).collect(Collectors.toList());",
+        "id": "fTTM_cu"
+    },
+    {
+        "title": "해야할일",
+        "subject": "skills",
+        "contents": "vue - transition, vite nuxt\nreact - vite redux, signals\narchitecture - java spring all, typescript + vue all\njenkins - ec2\njava - stream, spring session, spring auth token,\nsql - join, tuning, rollup\npython\nkiwoom api\ngame(javascript)\n\n \n",
+        "id": "KWLjqI3"
+    },
+    {
+        "title": "해야할일",
+        "subject": "all",
+        "contents": "aws\napp\napi\njenkins\narchitecturing\nstock\ngame\ndocker\nkubernates\ngcp\nsql",
+        "id": "T3DKVOe"
+    },
+    {
+        "title": "해야할일",
+        "subject": "life",
+        "contents": "house\nbook\nbaby\nsecond jobs\n",
+        "id": "GVoMDoq"
+    },
+    {
+        "title": "해야할 일",
+        "subject": "skill",
+        "contents": "java - junit",
+        "id": "MA5APss"
+    }
+]
